@@ -26,15 +26,14 @@ function App() {
 
   const completeTask = (id) => {  
     
-    setTasks((prev) => prev.map(task => {
-      if (task.id === id) {
-        return {...task, completed: true}
-      } else {
-        return task;
-      }
-    })
-    );
-    
+      setTasks((prev) => prev.map(task => {
+        if (task.id === id) {
+          return {...task, completed: true}
+        } else {
+          return task;
+        }
+      })
+    );    
     
   }
   
