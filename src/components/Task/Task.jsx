@@ -10,7 +10,7 @@ function Task({task, completeTask}) {
                 onChange={() => completeTask(task.id)}                 
                 id={task.id} /> 
               <label 
-                className={task.completed ? "form-check-label completed" : "form-check-label"}
+                className={task.completed ? "form-check-label text-decoration-line-through" : "form-check-label"}
                 htmlFor={task.id}>                
                 {task.text}
               </label> 

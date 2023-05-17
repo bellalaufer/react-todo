@@ -7,7 +7,7 @@ function AddTask({setText, addTask, text}) {
              
           <input 
             type="text" 
-            className="form-control" 
+            className="form-control w-50 mb-3" 
             placeholder="Write your task here" 
             aria-label="Recipient's username" 
             aria-describedby="basic-addon2" 
@@ -15,7 +15,7 @@ function AddTask({setText, addTask, text}) {
             value={text} />
           <button 
             type="button" 
-            className="btn" 
+            className="btn btn-primary mb-3" 
             onClick={addTask}>Add</button>
         </div>
     );

@@ -1,13 +1,16 @@
 import { useState } from "react";
-import "./App.css";
+import { useLocalStorage } from "./hooks/useLS";
+
 import Main from "./components/Main/Main";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
 
-  const [text, setText] = useState('');
-  const [tasks, setTasks] = useState([]);
-  const [id, setId] = useState(0);
+  const [text, setText] = useState("");
+  const [tasks, setTasks] = useLocalStorage('tasks', []); 
+  
   
 
   const addTask = () => {
@@ -17,12 +20,14 @@ function App() {
     const newTask = {
       text: text,
       completed: false,
-      id: id     
+      id: Date.now()     
             
     }
+    localStorage.setItem(`task-${newTask.id}`, JSON.stringify(newTask.text));
     setTasks((prev) => [...prev, newTask])
     setText("")
-    setId((prev) => prev + 1)
+    
+    
   }
 
   const completeTask = (id) => {  
@@ -35,12 +40,14 @@ function App() {
         }
       }));    
     
-  }
+  } 
   
   
   return (
     <div className="App">
+      <Header />
       <Main setText={setText} addTask={addTask} text={text} tasks={tasks} completeTask={completeTask}/>
+      <Footer />
     </div>
   );
 }
