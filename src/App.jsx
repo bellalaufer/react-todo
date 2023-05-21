@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useLocalStorage } from "./hooks/useLS";
+import { useReducer } from "react";
+import { globalContext as GlobalContext } from "./contexts/globalContext";
+import { reducer } from "./reducers/reducer";
 
 import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
@@ -8,47 +9,23 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
 
-  const [text, setText] = useState("");
-  const [tasks, setTasks] = useLocalStorage('tasks', []); 
-  
-  
-
-  const addTask = () => {
-    if (text.trim() === "") {
-      return
-    } 
-    const newTask = {
-      text: text,
-      completed: false,
-      id: Date.now()     
-            
-    }
-    localStorage.setItem(`task-${newTask.id}`, JSON.stringify(newTask.text));
-    setTasks((prev) => [...prev, newTask])
-    setText("")
-    
-    
+  const initialState = {
+    tasks: [],
+    text: ""
   }
 
-  const completeTask = (id) => {  
-    
-      setTasks((prev) => prev.map(task => {        
-        if (task.id === id) {
-          return {...task, completed: true}
-        } else {
-          return task;
-        }
-      }));    
-    
-  } 
-  
-  
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  // const [tasks, setTasks] = useLocalStorage('tasks', []); 
+
   return (
-    <div className="App">
+    <>
+    <GlobalContext.Provider value={{state, dispatch}}>
       <Header />
-      <Main setText={setText} addTask={addTask} text={text} tasks={tasks} completeTask={completeTask}/>
+      <Main />
       <Footer />
-    </div>
+    </GlobalContext.Provider>
+    </>
   );
 }
 

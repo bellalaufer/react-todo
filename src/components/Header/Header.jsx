@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header(props) {
+function Header() {
     return (
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid"> 
