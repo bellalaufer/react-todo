@@ -8,15 +8,16 @@ export function reducer(state, action) {
             const taskId = action.payload;
             return { ...state, tasks: state.tasks.map(task => {
                 if (task.id === taskId) {
-                    return { ...task, completed: true };
+                    return { ...task, completed: !task.completed };
                 } else {
                     return task;
                 }
                 
             })};
         }
-        case 'REMOVE_TASK': {
-            break
+        case 'DELETE_TASK': {
+            const deletedTaskId = action.payload;
+            return {...state, tasks: state.tasks.filter(task => task.id !== deletedTaskId)}
         }
         default: {
             return state

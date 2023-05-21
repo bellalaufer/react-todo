@@ -18,9 +18,8 @@ function Input() {
         id: Date.now()     
         }
     })
-    setText("")    
-    //localStorage.setItem(`task-${newTask.id}`, JSON.stringify(newTask.text));        
-    // setTasks((prev) => [...prev, newTask])
+    setText("")
+    
     
     
   }

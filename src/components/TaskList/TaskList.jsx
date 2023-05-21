@@ -1,31 +1,31 @@
 import React, { useContext } from 'react';
 import Task from '../Task/Task';
 import { globalContext } from '../../contexts/globalContext';
+//import { useLocalStorage } from '../../hooks/useLS'
 
 function TaskList() {
     const {state, dispatch} = useContext(globalContext)
     //const [text, setText] = useState("");
+    //const [tasks, setTasks] = useLocalStorage('tasks', []);
 
     const completeTask = (id) => { 
         dispatch({
             type: 'COMPLETE_TASK',
             payload: id
+        })    
+    }
+    const deleteTask = (id) => {
+        dispatch({
+            type: 'DELETE_TASK',
+            payload: id
         })
-    
-        // setTasks((prev) => prev.map(task => {        
-        //     if (task.id === id) {
-        //         return {...task, completed: true}
-        //     } else {
-        //         return task;
-        //     }
-        // }));    
     } 
     return (
         <div className="tasks">
         <h4>Tasks: </h4>
             {state.tasks.map((task) => (        
                 <div className="form-check" key={task.id}>              
-                <Task task={task} completeTask={completeTask}/>        
+                <Task task={task} completeTask={completeTask} deleteTask={deleteTask}/>        
                 </div>      
             
             ))}
