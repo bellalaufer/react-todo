@@ -12,13 +12,8 @@ function Task({task, completeTask, deleteTask}) {
             id={task.id}
           />
           <label
-            className={
-              task.completed
-                ? "form-check-label text-decoration-line-through"
-                : "form-check-label"
-            }
-            htmlFor={task.id}
-          >
+            className={ task.completed ? "form-check-label text-decoration-line-through" : "form-check-label" }
+            htmlFor={task.id}>
             {task.text}
           </label>
         </div>

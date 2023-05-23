@@ -9,19 +9,20 @@ function Input() {
   const addTask = () => {    
     if (text.trim() === "") {
       return
-    } 
+    }
+  const newTask = {
+      text: text,
+      completed: false,
+      id: Date.now(),
+    };
     dispatch({
       type: 'ADD_TASK',
-      payload: {
-        text: text,
-        completed: false,
-        id: Date.now()     
-        }
+      payload: newTask
     })
-    setText("")
-    
-    
-    
+    dispatch({
+      type: 'SAVE_TASK',
+  })
+    setText("");    
   }
   
     return (
